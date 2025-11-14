@@ -1,4 +1,4 @@
-import {container } from 'react-bootstrap';
+import {Container } from 'react-bootstrap';
 export default function Hero() {
     const background={
         backgroundImage: 'url(/src/assets/heroBrand.png)',
@@ -12,9 +12,9 @@ export default function Hero() {
         alignItems: 'center',
     }
   return (
-    <container className="bg-light p-5 rounded-lg m-3" styele={background}>
+    <Container className="bg-light p-5 rounded-lg m-3" styele={background}>
       <h1>Welcome to Sunga</h1>
       <p>Your trusted platform for seamless borrowing and lending.</p>
-    </container>
+    </Container>
   );
 }
