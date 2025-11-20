@@ -1,20 +1,22 @@
 import {Container } from 'react-bootstrap';
+
 export default function Hero() {
     const background={
-        backgroundImage: 'url(/src/assets/heroBrand.png)',
+        backgroundImage: 'url(../../public/heroBrand.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '400px',
+        height: '70vh',
+        width: '9000px',
         color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+      
+  
     }
   return (
-    <Container className="bg-light p-5 rounded-lg m-3" styele={background}>
+    <div className='d-flex w-100 bg-primary  align-items-center justify-content-center' >
+    <Container className="bg-light p-5  bgrounded-lg m-0 p-5" style={background}>
       <h1>Welcome to Sunga</h1>
       <p>Your trusted platform for seamless borrowing and lending.</p>
     </Container>
+    </div>
   );
 }
