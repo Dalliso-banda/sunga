@@ -3,7 +3,8 @@ import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Nav from './components/Nav.jsx'
 import LoginPage from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
-
+import FAQPage from './pages/FAQs.jsx'
+import SignUp from './pages/SignUpPage.jsx'
 
 const router = createBrowserRouter(
 [
@@ -14,7 +15,7 @@ const router = createBrowserRouter(
 },
 {
    path: '/signup',
-  element:<Nav/>
+  element:<SignUp/>
  
 },
 {
@@ -29,7 +30,7 @@ const router = createBrowserRouter(
  
 },{
    path: '/FAQs',
-  element:<Nav/>
+  element:<FAQPage/>
  
 }
 

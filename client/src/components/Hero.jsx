@@ -18,7 +18,7 @@ export default function Hero() {
       <h1>Welcome to Sunga</h1>
       <p>Your trusted platform for seamless running lending business.</p>
       <button className="btn btn-primary btn-lg">
-        <Link className='text-white nav-link' to={'/login'}>Get Started</Link>
+        <Link className='text-white nav-link' to={'/signup'}>Get Started</Link>
       </button>
     </Container>
     </div>
