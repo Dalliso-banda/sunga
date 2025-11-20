@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import Nav from './components/Nav.jsx'
-import Hero from './components/Hero.jsx'
+import LoginPage from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
+
 
 const router = createBrowserRouter(
 [
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
 },
 {
    path: '/login',
-  element:<Nav/>
+  element:<LoginPage/>
  
 },
 {
