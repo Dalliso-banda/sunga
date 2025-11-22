@@ -2,26 +2,11 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
+import FormPageStyles from '../styles/FormPage.jsx'
 
-const styles = {
-  pageBackground: {
-    backgroundColor: '#1E3A8A', 
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    padding: '20px',
-  },
-  primaryButton: {
-    backgroundColor: '#10B981', 
-    borderColor: '#10B981',
-    fontWeight: 'bold',
-  },
-  logoText: {
-    color: '#1E3A8A', 
-    fontWeight: '900',
-  }
-};
+const styles = FormPageStyles();
+
+
 
 const isValidIdentifier = (value) => { 
     const emailRegex = /^\S+@\S+\.\S+$/; 

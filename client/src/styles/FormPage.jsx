@@ -1,4 +1,5 @@
-export defeault const styles = {
+export default function FormStyles(){
+ const   styles = {
   pageBackground: {
     backgroundColor: '#1E3A8A', 
     minHeight: '100vh',
@@ -17,4 +18,6 @@ export defeault const styles = {
     fontWeight: '900',
   }
 };
+return styles;
 
+}

@@ -5,6 +5,7 @@ import LoginPage from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import FAQPage from './pages/FAQs.jsx'
 import SignUp from './pages/SignUpPage.jsx'
+import DashBoard from './pages/DashBoard.jsx'
 
 const router = createBrowserRouter(
 [
@@ -25,7 +26,7 @@ const router = createBrowserRouter(
 },
 {
    path: '/dashbored',
-  element:<Nav/>
+  element:<DashBoard/>
 
  
 },{
@@ -43,8 +44,9 @@ function App() {
 
   return (
     <>
+    <div className="w-100">
 <RouterProvider router={router}/>
-
+</div>
     </>
   )
 }

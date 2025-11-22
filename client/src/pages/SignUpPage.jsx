@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 
-import styles from '../styles/FormPage.jsx'
+import FormPageDesign  from '../styles/FormPage.jsx'
+
+const styles = FormPageDesign();  
 
 const isValidIdentifier = (value) => { 
     const emailRegex = /^\S+@\S+\.\S+$/; 
@@ -42,7 +44,7 @@ export default function Login() {
             <Card className="shadow-lg">
               <Card.Header className="text-center">
                 <h2 style={styles.logoText}>SUNGA</h2>
-                <p className="text-muted mb-0">Lender Login</p>
+                <p className="text-muted mb-0">Lender signup</p>
               </Card.Header>
 
               <Form onSubmit={handleSubmit(onSubmit)}>
@@ -65,9 +67,47 @@ export default function Login() {
                       {errors.identifier?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-              
+                
+                 
+                  <Form.Group className="mb-3" controlId="formIdentifier">
+                    <Form.Label>  Business Name</Form.Label>
+                    <Form.Control 
+                      type="text" 
+                      placeholder="Enter business name" 
+                      {...register("businessName", { 
+                        required: "Business Name is required.",
+                 
+                      })} 
+                      isInvalid={!!errors.businessName}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.businessName?.message}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                    
+                 
+                  <Form.Group className="mb-3" controlId="formIdentifier">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control 
+                      type="text" 
+                      placeholder="Location" 
+                      {...register("location", { 
+                        required: "Location is required.",
+                       
+                        validate: isValidIdentifier 
+                      })} 
+                      isInvalid={!!errors.location}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.location?.message}
+                    </Form.Control.Feedback>
+
+
+
+                  </Form.Group>
+                  
                   <Form.Group className="mb-4" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label> Create Password</Form.Label>
                     <Form.Control 
                       type="password" 
                       placeholder="Password" 

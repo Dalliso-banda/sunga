@@ -7,13 +7,13 @@ import {
     Button, 
 } from 'react-bootstrap'; 
 
-
+ 
 
 export default function NavBar() {
    
 
     return (
-      
+     
         <Navbar bg="primary" variant="dark" expand="lg" className="w-100 p-2">
             <Container fluid>
             
@@ -27,7 +27,7 @@ export default function NavBar() {
                             Home
                         </Nav.Link>
                         
-                        <Nav.Link href="/borrowers">
+                        <Nav.Link href="/dashbored">
                             Dashboard
                         </Nav.Link>
                         
@@ -44,7 +44,8 @@ export default function NavBar() {
                     <Nav>
                         <NavDropdown title="Account" id="account-dropdown" align="end">
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Divider />
+                      
+      <NavDropdown.Divider />
                             <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
