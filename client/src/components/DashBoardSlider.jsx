@@ -1,6 +1,6 @@
 import { Container, Card, Row, Col } from 'react-bootstrap';
 
-export default function DushBoardSlider({ title, amount }) {
+export default function DashBoardSlider({ title, amount }) {
     return (
         <Container className="d-flex justify-content-center align-items-center">
             <Row className="m-3 w-75">

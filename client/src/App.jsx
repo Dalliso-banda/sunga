@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import FAQPage from './pages/FAQs.jsx'
 import SignUp from './pages/SignUpPage.jsx'
 import DashBoard from './pages/DashBoard.jsx'
+import ClientHistory from './pages/ClientHistory.jsx' 
 
 const router = createBrowserRouter(
 [
@@ -32,6 +33,10 @@ const router = createBrowserRouter(
 },{
    path: '/FAQs',
   element:<FAQPage/>
+ 
+},{
+   path: '/clienthistory',
+  element:<ClientHistory/>
  
 }
 
