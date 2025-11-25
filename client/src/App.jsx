@@ -7,6 +7,7 @@ import FAQPage from './pages/FAQs.jsx'
 import SignUp from './pages/SignUpPage.jsx'
 import DashBoard from './pages/DashBoard.jsx'
 import ClientHistory from './pages/ClientHistory.jsx' 
+import UploadClient from './pages/UploadClient.jsx'
 
 const router = createBrowserRouter(
 [
@@ -37,6 +38,10 @@ const router = createBrowserRouter(
 },{
    path: '/clienthistory',
   element:<ClientHistory/>
+ 
+},{
+   path: '/uploadclient',
+  element:<UploadClient/>
  
 }
 
