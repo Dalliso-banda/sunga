@@ -1,7 +1,7 @@
 export default function FormStyles(){
  const   styles = {
   pageBackground: {
-    backgroundColor: '#1E3A8A', 
+    backgroundColor: '#F3F4F6', 
     minHeight: '100vh',
     display: 'flex',
     alignItems: 'center', 
@@ -9,7 +9,7 @@ export default function FormStyles(){
     padding: '20px',
   },
   primaryButton: {
-    backgroundColor: '#10B981', 
+    backgroundColor: '#101bb9b4', 
     borderColor: '#10B981',
     fontWeight: 'bold',
   },
