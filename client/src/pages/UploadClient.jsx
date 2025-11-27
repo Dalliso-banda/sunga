@@ -1,187 +1,170 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 
-import FormPageDesign  from '../styles/FormPage.jsx'
+import FormPageDesign from "../styles/FormPage.jsx";
 
+const styles = FormPageDesign();
 
-const styles = FormPageDesign();  
+const isValidNumber = (value) => {
+  const numberRegex = /^\d+$/;
 
+  if (numberRegex.test(value)) {
+    return true;
+  }
+  return "Please enter a valid number.";
+};
 
-const isValidNumber = (value) => { 
-    const numberRegex = /^\d+$/; 
-
-    if (numberRegex.test(value)) {
-        return true;
-    }
-    return "Please enter a valid number.";
-}
-
-const isValidEmail= (value) => {
-   const emailRegex = /^\S+@\S+\.\S+$/; 
-   if(emailRegex.test(value)) {
-       return true;
-   }
-   return "Please enter a valid email address.";
-}
+const isValidEmail = (value) => {
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  if (emailRegex.test(value)) {
+    return true;
+  }
+  return "Please enter a valid email address.";
+};
 
 export default function Login() {
-  
   useEffect(() => {
-     document.title = "UPLOAD CLIENT - Sunga";
+    document.title = "UPLOAD CLIENT - Sunga";
   }, []);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = data => {
-    console.log( data);
-
-    
-   
-  };  
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div style={styles.pageBackground}>
       <Container>
         <Row className="justify-content-center">
-          <Col xs={12} sm={8} md={6} lg={6}> 
+          <Col xs={12} sm={8} md={6} lg={6}>
             <Card className="shadow-lg">
               <Card.Header className="text-center">
-                <h2 className='text-primary'>SUNGA</h2>
+                <h2 style={styles.logoText}>SUNGA</h2>
                 <p className="text-muted mb-0"> Upload Borrower</p>
               </Card.Header>
 
               <Form onSubmit={handleSubmit(onSubmit)}>
-                <Card.Body> 
-                
-                 
+                <Card.Body>
                   <Form.Group className="mb-3" controlId="formIdentifier">
                     <Form.Label>client Email</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Enter client email or phone number" 
-                      {...register("clientEmail", { 
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter client email or phone number"
+                      {...register("clientEmail", {
                         required: "Email is required.",
-                       
-                        validate: isValidEmail
-                      })} 
+
+                        validate: isValidEmail,
+                      })}
                       isInvalid={!!errors.clientEmail}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.clientEmail?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                
+
                   <Form.Group className="mb-3" controlId="formIdentifier">
                     <Form.Label>client Phone Number</Form.Label>
-                    <Form.Control 
-                      type="number" 
-                      placeholder="Enter client email or phone number" 
-                      {...register("clientNumber", { 
+                    <Form.Control
+                      type="number"
+                      placeholder="Enter client email or phone number"
+                      {...register("clientNumber", {
                         required: "Phone Number is required.",
-                       
-                        validate: isValidNumber
-                      })} 
+
+                        validate: isValidNumber,
+                      })}
                       isInvalid={!!errors.clientNumber}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.clientNumber?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                
-                 
+
                   <Form.Group className="mb-3" controlId="formIdentifier">
-                    <Form.Label>  Client Name</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Enter Client Name" 
-                      {...register("clientName", { 
+                    <Form.Label> Client Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Client Name"
+                      {...register("clientName", {
                         required: "Client Name is required.",
-                 
-                      })} 
+                      })}
                       isInvalid={!!errors.clientName}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.clientName?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                    
-                 
-                <Form.Group className="mb-3" controlId="formIdentifier">
-                    <Form.Label>  Collatral Item</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Enter Collatral Item" 
-                      {...register("collatralItem", { 
+
+                  <Form.Group className="mb-3" controlId="formIdentifier">
+                    <Form.Label> Collatral Item</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Collatral Item"
+                      {...register("collatralItem", {
                         required: "Collatral Item is required.",
-                 
-                      })} 
+                      })}
                       isInvalid={!!errors.collatralItem}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.collatralItem?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                    
-                  
-                  <Form.Group className="mb-4" >
+
+                  <Form.Group className="mb-4">
                     <Form.Label>Date collected</Form.Label>
-                    <Form.Control 
-                      type="date" 
-                      placeholder="enter date" 
-                      {...register("dateCollected", { 
+                    <Form.Control
+                      type="date"
+                      placeholder="enter date"
+                      {...register("dateCollected", {
                         required: "Date collected is required.",
-                   
-                      })} 
+                      })}
                       isInvalid={!!errors.dateCollected}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.dateCollected?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                        
-                  <Form.Group className="mb-4" >
+
+                  <Form.Group className="mb-4">
                     <Form.Label>interest rate</Form.Label>
-                    <Form.Control 
-                      type="number" 
-                      placeholder="enter interest rate in percent e.g 10 for 10%" 
-                      {...register("interestRate", { 
+                    <Form.Control
+                      type="number"
+                      placeholder="enter interest rate in percent e.g 10 for 10%"
+                      {...register("interestRate", {
                         required: "Interest rate is required.",
-                   
-                      })} 
+                      })}
                       isInvalid={!!errors.interestRate}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.interestRate?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                        
-                  <Form.Group className="mb-4" >
+
+                  <Form.Group className="mb-4">
                     <Form.Label>period in weeks</Form.Label>
-                    <Form.Control 
-                      type="number" 
-                      placeholder="enter period in weeks" 
-                      {...register("periodInWeeks", { 
+                    <Form.Control
+                      type="number"
+                      placeholder="enter period in weeks"
+                      {...register("periodInWeeks", {
                         required: "Period in weeks is required.",
-                   
-                      })} 
+                      })}
                       isInvalid={!!errors.periodInWeeks}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.periodInWeeks?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                
-                  <Button 
-                    className="w-100 bg-primary" 
-                    type="submit" 
-              
-                  >
+
+                  <Button className="w-100 " style={styles.primaryButton} type="submit">
                     Log In
                   </Button>
-                  
                 </Card.Body>
               </Form>
               {/*
@@ -192,7 +175,6 @@ export default function Login() {
               </Card.Footer>
 
               */}
-
             </Card>
           </Col>
         </Row>
