@@ -8,6 +8,11 @@ import SignUp from './pages/SignUpPage.jsx'
 import DashBoard from './pages/DashBoard.jsx'
 import ClientHistory from './pages/ClientHistory.jsx' 
 import UploadClient from './pages/UploadClient.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import TsAndCs from './pages/Ts&Cs.jsx'
+
+import KnowledgeBase from './pages/KnowledgeBase.jsx'
+import AboutUs from './pages/AboutUs.jsx'
 
 const router = createBrowserRouter(
 [
@@ -43,8 +48,28 @@ const router = createBrowserRouter(
    path: '/uploadclient',
   element:<UploadClient/>
  
+},
+{
+   path: '/privacypolicy',
+  element:<PrivacyPolicy/>
+ 
+},
+{
+   path: '/termsandconditions',
+  element:<TsAndCs/>
+ 
 }
-
+,
+{
+   path: '/knowledgebase',
+  element:<KnowledgeBase/>
+ 
+},
+{
+   path: '/aboutus',
+  element:<AboutUs/>
+ 
+}
 ]
 
 )

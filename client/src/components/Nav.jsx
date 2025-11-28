@@ -33,8 +33,8 @@ export default function NavBar() {
 
                         </Nav.Link>
                         
-                        <Nav.Link href="/FAQs" {...path === 'FAQs' ? { active: true } : {}}>
-                            FAQs
+                        <Nav.Link href="/aboutus" {...path === 'aboutus' ? { active: true } : {}}>
+                      About us
                         </Nav.Link>
                     </Nav>
 

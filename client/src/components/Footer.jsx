@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 
-export default function SungaFooter() {
+ export default function SungaFooter() {
   return (
     <footer style={{ backgroundColor: '#1a1a1a', color: '#fff', padding: '40px 0' }}>
       <Container>
@@ -30,34 +30,32 @@ export default function SungaFooter() {
 
             <h5 className="mt-3">Company</h5>
             <Nav className="flex-column">
-              <Nav.Link href="#" style={{ color: '#fff' }}>About Us</Nav.Link>
+              <Nav.Link href="/aboutus" style={{ color: '#fff' }}>About Us</Nav.Link>
               <Nav.Link href="#" style={{ color: '#fff' }}>Contact Us</Nav.Link>
               <Nav.Link href="#" style={{ color: '#fff' }}>Blog/Resources</Nav.Link>
               <Nav.Link href="#" style={{ color: '#fff' }}>Careers</Nav.Link>
             </Nav>
           </Col>
 
-          {/* Column 3 - Support & Legal */}
           <Col md={4} sm={12} className="mb-4">
             <h5>Support</h5>
             <Nav className="flex-column">
               <Nav.Link href="/FAQs" style={{ color: '#fff' }}>FAQs</Nav.Link>
-              <Nav.Link href="#" style={{ color: '#fff' }}>Knowledge Base</Nav.Link>
+              <Nav.Link href="/knowledgebase" style={{ color: '#fff' }}>Knowledge Base</Nav.Link>
               <Nav.Link href="#" style={{ color: '#fff' }}>Support Chat</Nav.Link>
             </Nav>
 
             <h5 className="mt-3">Legal</h5>
             <Nav className="flex-column">
-              <Nav.Link href="#" style={{ color: '#fff' }}>Terms of Service</Nav.Link>
-              <Nav.Link href="#" style={{ color: '#fff' }}>Privacy Policy</Nav.Link>
-              <Nav.Link href="#" style={{ color: '#fff' }}>Cookie Policy</Nav.Link>
-              <Nav.Link href="#" style={{ color: '#fff' }}>Disclaimer</Nav.Link>
+              <Nav.Link href="/termsandconditions" style={{ color: '#fff' }}>Terms and conditions</Nav.Link>
+              <Nav.Link href="/PrivacyPolicy" style={{ color: '#fff' }}>Privacy Policy</Nav.Link>
+       
             </Nav>
           </Col>
         </Row>
       </Container>
 
-      {/* Bottom Bar */}
+
       <div style={{ backgroundColor: '#111', padding: '10px 0', marginTop: '20px' }}>
         <Container className="d-flex justify-content-between">
           <div>
