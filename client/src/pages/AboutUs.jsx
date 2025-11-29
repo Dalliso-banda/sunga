@@ -90,9 +90,6 @@ export default function AboutUs (){
         </Col>
       </Row>
 
-      ---
-      
-      {/* --- Section 4: Our Story / Founder's Note --- */}
       <Row className="mt-5 justify-content-center">
         <Col md={8} className="text-center">
           <h2 className="mb-3">🤝 Our Story: Built for Lenders</h2>
@@ -101,10 +98,10 @@ export default function AboutUs (){
               "The idea for **Sunga** began on **[2025-11-10]** with a simple recognition: money lenders need a tool that works as hard as they do. I saw first-hand how much time was wasted on managing paper records and realized that a secure, intuitive digital platform could be game-changing."
             </Card.Text>
             <Card.Text className="fw-bold mt-3">
-              We built Sunga not just as software, but as a reliable partner to help you keep your records and track down borrowers efficiently.
-            </Card.Text>
+          Ideas dont rain from heaven they come through critical analytics of your surrounding
+             </Card.Text>
             <footer className="blockquote-footer mt-2">
-              The Founder, Sunga
+               Dalitso The Founder, Sunga
             </footer>
           </Card>
         </Col>
@@ -112,7 +109,7 @@ export default function AboutUs (){
 
       <div className="text-center mt-5">
         <Button variant="primary" size="lg">
-          See How Sunga Can Help Your Business
+     <a  className='nav-link'href='/knowledgebase'>         See How Sunga Can Help Your Business</a>
         </Button>
       </div>
 

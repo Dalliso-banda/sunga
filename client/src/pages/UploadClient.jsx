@@ -87,6 +87,27 @@ export default function Login() {
                     </Form.Control.Feedback>
                   </Form.Group>
 
+                  <Form.Group className="mb-3" >
+                    <Form.Label>client NRC</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter client NRC"
+                      {...register("clientNRC", {
+                        required: "NRC is required.",
+                        minLength:{
+                          value: 8,
+                          message: 'input valid NRC'
+
+                        }
+                        
+                      })}
+                      isInvalid={!!errors.clientNRC}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.clientNRC?.message}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
                   <Form.Group className="mb-3" controlId="formIdentifier">
                     <Form.Label> Client Name</Form.Label>
                     <Form.Control
@@ -167,14 +188,7 @@ export default function Login() {
                   </Button>
                 </Card.Body>
               </Form>
-              {/*
-              <Card.Footer className="text-center text-muted">
-                <a href="/forgot-password" style={{ textDecoration: 'none', color: styles.logoText.color }}>
-                    Forgot Password?
-                </a>
-              </Card.Footer>
-
-              */}
+          
             </Card>
           </Col>
         </Row>

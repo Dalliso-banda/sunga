@@ -7,17 +7,27 @@ import FormPageDesign  from '../styles/FormPage.jsx'
 
 const styles = FormPageDesign();  
 
-const isValidIdentifier = (value) => { 
-    const emailRegex = /^\S+@\S+\.\S+$/; 
-    
-    
-    const phoneRegex = /^\+?[\d\s-]{8,20}$/; 
+const isValidEmail = (value) => { 
 
-    if (emailRegex.test(value) || phoneRegex.test(value)) {
+  if(!value){
+      return true
+  }
+  
+
+    const emailRegex = /^\S+@\S+\.\S+$/; 
+    if (emailRegex.test(value) ) {
         return true;
     }
-    return "Please enter a valid email address or phone number.";
-};
+    return "Please enter a valid email address.";
+}
+
+const isValidNumber=(value)=>{
+        const phoneRegex = /^\+?[\d\s-]{8,20}$/; 
+        if(phoneRegex.test(value)){
+          return true
+        }
+          return "Please enter a valid  phone number.";
+}
 
 
 export default function Login() {
@@ -30,17 +40,17 @@ export default function Login() {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    console.log('Identifier and Password:', data);
+    alert(JSON.stringify(data))
 
     
-    navigate('/borrowers'); 
+   
   };  
 
   return (
     <div style={styles.pageBackground}>
       <Container>
         <Row className="justify-content-center">
-          <Col xs={12} sm={8} md={6} lg={4}> 
+          <Col xs={12} sm={8} md={7} lg={5}> 
             <Card className="shadow-lg">
               <Card.Header className="text-center">
                 <h2 style={styles.logoText}>SUNGA</h2>
@@ -52,19 +62,36 @@ export default function Login() {
                 
                  
                   <Form.Group className="mb-3" controlId="formIdentifier">
-                    <Form.Label>Email or Phone Number</Form.Label>
+                    <Form.Label> Phone Number</Form.Label>
                     <Form.Control 
-                      type="text" 
-                      placeholder="Enter email or phone number" 
-                      {...register("identifier", { 
-                        required: "Email or Phone Number is required.",
+                      type="number" 
+                      placeholder="phone number" 
+                      {...register("phoneNumber", { 
+                        required: "Phone Number is required.",
                        
-                        validate: isValidIdentifier 
+                        validate: isValidNumber 
                       })} 
-                      isInvalid={!!errors.identifier}
+                      isInvalid={!!errors.phoneNumber}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.identifier?.message}
+                      {errors.phoneNumber?.message}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  
+                     <Form.Group className="mb-3" controlId="formIdentifier">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control 
+                      type="email" 
+                      placeholder="Email" 
+                      {...register("email", { 
+                       
+                       
+                        validate: isValidEmail
+                      })} 
+                      isInvalid={!!errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
                 
@@ -94,7 +121,7 @@ export default function Login() {
                       {...register("location", { 
                         required: "Location is required.",
                        
-                        validate: isValidIdentifier 
+                       
                       })} 
                       isInvalid={!!errors.location}
                     />
@@ -130,18 +157,13 @@ export default function Login() {
                     type="submit" 
                     style={styles.primaryButton}
                   >
-                    Log In
+          Sign up
                   </Button>
                   
                 </Card.Body>
               </Form>
               
-              <Card.Footer className="text-center text-muted">
-                <a href="/forgot-password" style={{ textDecoration: 'none', color: styles.logoText.color }}>
-                    Forgot Password?
-                </a>
-              </Card.Footer>
-
+       
             </Card>
           </Col>
         </Row>

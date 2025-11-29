@@ -100,8 +100,8 @@ export default function Login() {
               </Form>
               
               <Card.Footer className="text-center text-muted">
-                <a href="/forgot-password" style={{ textDecoration: 'none', color: styles.logoText.color }}>
-                    Forgot Password?
+                <a href="/signup" style={{ textDecoration: 'none', color: styles.logoText.color }}>
+                   do not have an account ? create one
                 </a>
               </Card.Footer>
 
