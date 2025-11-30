@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 import FormPageStyles from '../styles/FormPage.jsx'
+import axios from 'axios'
 
 const styles = FormPageStyles();
 
@@ -31,10 +32,16 @@ export default function Login() {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    console.log('Identifier and Password:', data);
+         console.log(data)
+   axios.post('/api/auth/login',data)
+  .then(response => {
+    console.log('Success:', response.data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
-    
-    navigate('/borrowers'); 
+   
   };  
 
   return (
