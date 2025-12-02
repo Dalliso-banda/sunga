@@ -15,15 +15,13 @@ class UserModel{
     }
 
     async createUser(businessname, number, email, hashedPassword, location){
+        if(!email)
+            email='not asigened'
+        
         const sql= `INSERT INTO ${Tables.users} (businessname,number,email, password,location) VALUES ($1, $2, $3, $4, $5) RETURNING id`
         const params= [businessname, number, email, hashedPassword, location]
-         try{
-            await this.db.query (sql, params)
-         }
-         catch(err){
-            console.log(err)
-         }
-     
+        const results= await this.db.query (sql, params)
+        return results.rows[0].id
     }
     async getUserByUserEmail(email){
 

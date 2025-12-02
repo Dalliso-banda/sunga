@@ -13,7 +13,8 @@ const isValidEmail = (value) => {
     const emailRegex = /^\S+@\S+\.\S+$/;   
    
 
-
+ if(!value)
+  return true
     if (emailRegex.test(value) ) {
 
         return true;
@@ -109,7 +110,7 @@ export default function Login() {
                       type="text" 
                       placeholder="Enter email address" 
                       {...register("email", { 
-                        required: "Email Address is required.",
+                       
                        
                         validate: isValidEmail 
                       })} 

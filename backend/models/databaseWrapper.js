@@ -6,6 +6,7 @@ const pool = new Pool({
   database: 'sunga_db',
   password: '123321',
   port: 5432,
+  max: 9
 }); 
 
 
