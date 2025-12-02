@@ -2,32 +2,41 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
+import axios from 'axios'
 
 import FormPageDesign  from '../styles/FormPage.jsx'
+
 
 const styles = FormPageDesign();  
 
 const isValidEmail = (value) => { 
+    const emailRegex = /^\S+@\S+\.\S+$/;   
+   
 
-  if(!value){
-      return true
-  }
-  
 
-    const emailRegex = /^\S+@\S+\.\S+$/; 
     if (emailRegex.test(value) ) {
+
         return true;
+
     }
-    return "Please enter a valid email address.";
+
+    return "Please enter a valid email address";
+};
+const isValidNumber=(value)=>{
+    
+ const phoneRegex = /^\+?[\d\s-]{8,20}$/; 
+
+    if (phoneRegex.test(value) ) {
+
+        return true;
+
+    }
+
+    return "Please enter a valid  phone number.";
+
 }
 
-const isValidNumber=(value)=>{
-        const phoneRegex = /^\+?[\d\s-]{8,20}$/; 
-        if(phoneRegex.test(value)){
-          return true
-        }
-          return "Please enter a valid  phone number.";
-}
+
 
 
 export default function Login() {
@@ -40,17 +49,33 @@ export default function Login() {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    alert(JSON.stringify(data))
+    console.log('Identifier and Password:', data);
+
+
+    axios.post('/api/auth/signup', {
+        businessname: data.businessName,
+        phoneNumber: data.phoneNumber,
+        email: data.email,
+        password: data.password,
+        location: data.location
+    })
+    .then(response => {
+        console.log('Signup successful:', response.data);
+      //  navigate('/login'); 
+    })
+    .catch(error => {
+        console.error('There was an error signing up!', error);
+    });
 
     
-   
+  
   };  
 
   return (
     <div style={styles.pageBackground}>
       <Container>
         <Row className="justify-content-center">
-          <Col xs={12} sm={8} md={7} lg={5}> 
+          <Col xs={12} sm={8} md={6} lg={4}> 
             <Card className="shadow-lg">
               <Card.Header className="text-center">
                 <h2 style={styles.logoText}>SUNGA</h2>
@@ -62,10 +87,10 @@ export default function Login() {
                 
                  
                   <Form.Group className="mb-3" controlId="formIdentifier">
-                    <Form.Label> Phone Number</Form.Label>
+                    <Form.Label>Phone Number</Form.Label>
                     <Form.Control 
-                      type="number" 
-                      placeholder="phone number" 
+                      type="text" 
+                      placeholder="Enter phone number" 
                       {...register("phoneNumber", { 
                         required: "Phone Number is required.",
                        
@@ -73,20 +98,20 @@ export default function Login() {
                       })} 
                       isInvalid={!!errors.phoneNumber}
                     />
+                    
                     <Form.Control.Feedback type="invalid">
                       {errors.phoneNumber?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  
                      <Form.Group className="mb-3" controlId="formIdentifier">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Email Address</Form.Label>
                     <Form.Control 
-                      type="email" 
-                      placeholder="Email" 
+                      type="text" 
+                      placeholder="Enter email address" 
                       {...register("email", { 
+                        required: "Email Address is required.",
                        
-                       
-                        validate: isValidEmail
+                        validate: isValidEmail 
                       })} 
                       isInvalid={!!errors.email}
                     />
@@ -120,7 +145,6 @@ export default function Login() {
                       placeholder="Location" 
                       {...register("location", { 
                         required: "Location is required.",
-                       
                        
                       })} 
                       isInvalid={!!errors.location}
@@ -157,13 +181,18 @@ export default function Login() {
                     type="submit" 
                     style={styles.primaryButton}
                   >
-          Sign up
+                    Log In
                   </Button>
                   
                 </Card.Body>
               </Form>
               
-       
+              <Card.Footer className="text-center text-muted">
+                <a href="/forgot-password" style={{ textDecoration: 'none', color: styles.logoText.color }}>
+                    Forgot Password?
+                </a>
+              </Card.Footer>
+
             </Card>
           </Col>
         </Row>
