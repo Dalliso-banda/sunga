@@ -23,6 +23,7 @@ const isValidIdentifier = (value) => {
 
 
 export default function Login() {
+  const [serverResponse, setServerResponse] = React.useState("");
   
   useEffect(() => {
      document.title = "Login - Sunga";
@@ -32,13 +33,19 @@ export default function Login() {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-         console.log(data)
+      
    axios.post('/api/auth/login',data)
   .then(response => {
-    console.log('Success:', response.data);
+
+   alert("Login successful");
   })
   .catch(error => {
-    console.error('Error:', error);
+   if(error.response.status===401){
+    setServerResponse("Invalid credentials");
+   }else{
+    setServerResponse("An error occurred. Please try again later.");
+   }
+    console.error('There was an error!', error);
   });
 
    
@@ -94,7 +101,7 @@ export default function Login() {
                       {errors.password?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-                
+                    <p className=" text-danger">{serverResponse}</p>
                   <Button 
                     className="w-100" 
                     type="submit" 
@@ -102,7 +109,7 @@ export default function Login() {
                   >
                     Log In
                   </Button>
-                  
+              
                 </Card.Body>
               </Form>
               
