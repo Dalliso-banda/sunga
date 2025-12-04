@@ -14,12 +14,11 @@ class UserModel{
    
     }
 
-    async createUser(businessname, number, email, hashedPassword, location){
-        if(!email)
-            email='not asigened'
+    async createUser(businessname, number, email, hashedPassword,termsAccepted, location){
+     
         
-        const sql= `INSERT INTO ${Tables.users} (businessname,number,email, password,location) VALUES ($1, $2, $3, $4, $5) RETURNING id`
-        const params= [businessname, number, email, hashedPassword, location]
+        const sql= `INSERT INTO ${Tables.users} (businessname,number,email, password,term_condtions,location) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`
+        const params= [businessname, number, email, hashedPassword,termsAccepted ,location]
         const results= await this.db.query (sql, params)
         return results.rows[0].id
     }

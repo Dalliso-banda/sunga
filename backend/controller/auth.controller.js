@@ -32,8 +32,8 @@ class AuthController {
     }
   }
   async signup(req, res) {
-    console.log(req.body);
-    let { businessname, phoneNumber, email, password, location } = req.body;
+    console.log(req.body.termsAccepted);
+    let { businessname, phoneNumber, email, password, termsAccepted,location } = req.body;
     if (!email) email = "not asigened";
     const hashedPassword = await bcrypt.hash(password, 10);
     const userId = await UserModel.createUser(
@@ -41,6 +41,7 @@ class AuthController {
       phoneNumber,
       email,
       hashedPassword,
+      termsAccepted,
       location
     );
     console.log("New user id:", userId);

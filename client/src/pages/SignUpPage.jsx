@@ -52,13 +52,15 @@ export default function Login() {
   const onSubmit = data => {
     console.log('Identifier and Password:', data);
 
-
+  if(data.termsAccepted)
+    data.termsAccepted=1;
     axios.post('/api/auth/signup', {
         businessname: data.businessName,
         phoneNumber: data.phoneNumber,
         email: data.email,
         password: data.password,
-        location: data.location
+        location: data.location,
+        termsAccepted:data.termsAccepted
     })
     .then(response => {
         console.log('Signup successful:', response.data);
@@ -157,6 +159,23 @@ export default function Login() {
 
 
                   </Form.Group>
+
+
+
+
+       <Form.Group controlId="formBasicCheckbox">
+  <Form.Check
+    type="checkbox"
+    label="Agree to terms"
+    {...register('termsAccepted', {
+      required: 'You must agree to the terms and conditions.',
+    })}
+    isInvalid={!!errors.termsAccepted}
+  />
+  <Form.Control.Feedback type="invalid">
+    {errors.termsAccepted?.message}
+  </Form.Control.Feedback>
+</Form.Group>
                   
                   <Form.Group className="mb-4" controlId="formBasicPassword">
                     <Form.Label> Create Password</Form.Label>
