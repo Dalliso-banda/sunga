@@ -1,5 +1,6 @@
 import {useUser} from '../contexts/UserAuthContext.jsx'
-import { Navigate,Outlet, Spinner } from 'react-bootstrap'
+import { Navigate,Outlet } from 'react-router-dom'
+import {Spinner} from 'react-bootstrap'
 
 export default function ProtectedRoutes() {
     const {isLoggedin,isLoading}=useUser();
