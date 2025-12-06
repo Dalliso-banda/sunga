@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {useUser} from '../contexts/UserAuthContext.jsx'
 import { 
     Navbar, 
     Nav, 
@@ -11,7 +12,8 @@ import { Link } from 'react-router-dom';
 
 
 export default function NavBar() {
-   
+    const {userData}=useUser()
+   console.log(userData)
  const path =window.location.pathname.slice(1)
     return (
      
@@ -39,17 +41,20 @@ export default function NavBar() {
                     </Nav>
 
                     <Nav>
-
-                        <Button variant="outline-light">       
+{
+          !userData?              <Button variant="outline-light">       
                       
                      <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
                      Login
                      </Link>
                     
-                        </Button>
+                        </Button>:{}
+                        
+                        }
                     </Nav>
                     
-                    {/* If you wanted the commented-out dropdown:
+                    {/* some stuffs am too lazy to include 
+            
                     <Nav>
                         <NavDropdown title="Account" id="account-dropdown" align="end">
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>

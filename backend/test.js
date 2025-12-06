@@ -1,29 +1,11 @@
-import {Pool} from 'pg';
-import express from 'express';
+import jwt from 'jsonwebtoken'
+import  dotEnv from 'dotenv/config';
 
-const router = express.Router();
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'sunga',
-  password: '123321',
-  port: 5432,
-}); 
 
-const testDBConnection = async () => {
-     const client = await pool.connect();
-    try{
-       
-        const testData= await client.query('SELECT * FROM users;');
-        console.log('Database connected:', testData.rows[0]);
-   
-    } 
+const testToken= jwt.sign({ id:1, email:"test@example.com" },process.env.JWT_SECRET , { expiresIn: '1h' });
 
-    catch(err){
-        console.log(err)
-    }
-    finally{
-        client.release()
-    }
-}
-testDBConnection()
+console.log("Generated Test Token:", testToken);
+
+const decoded= jwt.verify(testToken, process.env.JWT_SECRET);
+
+console.log("Decoded Token Payload:", decoded);

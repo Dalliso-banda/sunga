@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 import FormPageStyles from '../styles/FormPage.jsx'
 import axios from 'axios'
+import {useUser} from '../contexts/UserAuthContext.jsx'
 
 const styles = FormPageStyles();
 
@@ -24,6 +25,7 @@ const isValidIdentifier = (value) => {
 
 export default function Login() {
   const [serverResponse, setServerResponse] = React.useState("");
+  const {login}=useUser();
   
   useEffect(() => {
      document.title = "Login - Sunga";
@@ -36,8 +38,11 @@ export default function Login() {
       
    axios.post('/api/auth/login',data)
   .then(response => {
+     console.log(response.data)
+     login(response.data)
 
-   alert("Login successful");
+
+
   })
   .catch(error => {
    if(error.response.status===401){
