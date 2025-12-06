@@ -14,10 +14,11 @@ import TsAndCs from './pages/Ts&Cs.jsx'
 import {useUser} from './contexts/UserAuthContext.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import AboutUs from './pages/AboutUs.jsx'
+import ProtectedRoutes from './components/ProtectedRoutes.jsx'
 
 const router = createBrowserRouter(
 [
-{
+{ 
    path: '/',
   element:<Home/>
  
@@ -33,14 +34,13 @@ const router = createBrowserRouter(
  
 },
 {
+  element:<ProtectedRoutes/>,
+  children:[
+    {
    path: '/dashboard',
   element:<DashBoard/>
 
- 
-},{
-   path: '/FAQs',
-  element:<FAQPage/>
- 
+
 },{
    path: '/clienthistory',
   element:<ClientHistory/>
@@ -48,6 +48,12 @@ const router = createBrowserRouter(
 },{
    path: '/uploadclient',
   element:<UploadClient/>
+ 
+}
+  ]
+},{
+   path: '/FAQs',
+  element:<FAQPage/>
  
 },
 {
