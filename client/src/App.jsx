@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
+import {Spinner} from 'react-bootstrap'
 import Nav from './components/Nav.jsx'
 import LoginPage from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
@@ -10,7 +11,7 @@ import ClientHistory from './pages/ClientHistory.jsx'
 import UploadClient from './pages/UploadClient.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import TsAndCs from './pages/Ts&Cs.jsx'
-
+import {useUser} from './contexts/UserAuthContext.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 
@@ -75,13 +76,21 @@ const router = createBrowserRouter(
 )
 
 function App() {
-  
+  const {isLoading}=useUser();
 
   return (
     <>
-    <div className="w-100">
+
+      {isLoading ? (      <div className="w-100  d-flex mt-5 justify-content-center">
+                <Spinner variant='primary'></Spinner>
+            </div>) :
+        <div className="w-100">
 <RouterProvider router={router}/>
-</div>
+            </div>
+}
+  
+          
+   
     </>
   )
 }

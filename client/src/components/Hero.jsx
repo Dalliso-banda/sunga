@@ -1,8 +1,9 @@
 import {Container } from 'react-bootstrap';
 import {Link } from 'react-router-dom'
-
+import { useUser } from '../contexts/UserAuthContext';
 export default function Hero() {
-    const background={
+      const {isLoggedin}=useUser()
+  const background={
         backgroundImage: 'url(../../public/heroBrand.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -18,7 +19,7 @@ export default function Hero() {
       <h1>Welcome to Sunga</h1>
       <p>Your trusted platform for seamless running lending business.</p>
       <button className="btn btn-primary btn-lg">
-        <Link className='text-white nav-link' to={'/signup'}>Get Started</Link>
+     { isLoggedin? <Link className='text-white nav-link' to={'/signup'}>DashBoard</Link>: <Link className='text-white nav-link' to={'/signup'}>Get Started</Link>}
       </button>
     </Container>
     </div>

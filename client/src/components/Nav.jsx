@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import {useUser} from '../contexts/UserAuthContext.jsx'
 import { 
     Navbar, 
@@ -7,12 +7,13 @@ import {
     Container, 
     Button, 
 } from 'react-bootstrap'; 
+import { AuthProvider } from '../contexts/UserAuthContext.jsx';
 import { Link } from 'react-router-dom';
 
 
 
 export default function NavBar() {
-    const {userData}=useUser()
+    const {userData}=useUser();
    console.log(userData)
  const path =window.location.pathname.slice(1)
     return (
@@ -48,7 +49,7 @@ export default function NavBar() {
                      Login
                      </Link>
                     
-                        </Button>:{}
+                        </Button>:null
                         
                         }
                     </Nav>

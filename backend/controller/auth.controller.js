@@ -52,6 +52,22 @@ class AuthController {
 
     res.status(200).json({ message: "Signup successful" });
   }
+
+  async me(req, res) {
+  const auth_token= req.cookies['auth_token'];
+  if(!auth_token){
+    return res.status(401).json( {message:'unauthenticated'})
+  }
+
+  try{
+    const decoded = jwtMaster.masterVerify(auth_token);
+    res.status(200).json({id:decoded.id,email:decoded.email,businessname:decoded.businessname});
+    }
+    catch(err){
+
+      res.status(401).json({message:'unauthenticated'})
+    } 
+  }
 }
 
 export default new AuthController();

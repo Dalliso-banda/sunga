@@ -1,23 +1,61 @@
 import { useState,createContext,useContext } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+
+
 
 const userStates ={
     isLoggedin: null,
+    userData:null, 
+    isLoading:null, 
     login:()=>{},
     logout:()=>{}
 }
 const UserContext = createContext(userStates)
 
 export function AuthProvider({children}){
-    const [userData,setUserData]= useState()
+    const [userData,setUserData]= useState(null)
+    const [isLoggedin,setIsLoggedin]= useState(false)
+    const [isLoading,setIsLoading]= useState (true)
+ 
+
+useEffect(()=>{
+    const fetchUserData= async()=>{
+        try{
+            const response = await axios.get('/api/auth/me',{withCredentials:true});
+            setUserData (response.data)
+            setIsLoggedin (true)
+            setIsLoading(false)
+        }catch(error){
+            setUserData (null)
+            setIsLoggedin (false)
+            setIsLoading(false)
+            console.error('Error fetching user data:', error);
+            
+        }
+    }
+
+    fetchUserData();
+},[])
 
     const login=(userData)=>{
        console.log(userData,'from conext')
          setUserData(userData)
     }
-
+    if(!userData){
+      console.log('no user data')
+      
+      
+    }
+    const logout=()=>{
+        setUserData (null)
+        setIsLoggedin (false)
+    }
+    
+  const contextValues ={login, userData,isLoading,isLoggedin}
     return (
-     <UserContext.Provider value={{login, userData}}>{children}</UserContext.Provider>
-    )
+     <UserContext.Provider value={contextValues}>{children}</UserContext.Provider>
+    )   
 
 }
 
