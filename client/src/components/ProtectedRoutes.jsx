@@ -4,6 +4,7 @@ import {Spinner} from 'react-bootstrap'
 
 export default function ProtectedRoutes() {
     const {isLoggedin,isLoading}=useUser();
+    console.log(isLoggedin)
     if(isLoading){
         return <div className='d-flex justify-content-center align-items-center mt-5'><Spinner variant='primary' ></Spinner>.</div>
     }

@@ -22,7 +22,8 @@ export function AuthProvider({children}){
 useEffect(()=>{
     const fetchUserData= async()=>{
         try{
-            const response = await axios.get('/api/auth/me',{withCredentials:true});
+            const response =await axios.get('/api/auth/me',{withCredentials:true});
+            console.log(response.data,'user data from context' )
             setUserData (response.data)
             setIsLoggedin (true)
             setIsLoading(false)
@@ -52,7 +53,7 @@ useEffect(()=>{
         setIsLoggedin (false)
     }
     
-  const contextValues ={login, userData,isLoading,isLoggedin}
+  const contextValues ={login, logout, userData,isLoading,isLoggedin}
     return (
      <UserContext.Provider value={contextValues}>{children}</UserContext.Provider>
     )   

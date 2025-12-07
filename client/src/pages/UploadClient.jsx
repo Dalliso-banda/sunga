@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 import axios from "axios";
+import { useUser } from "../contexts/UserAuthContext.jsx";
 
 import FormPageDesign from "../styles/FormPage.jsx";
 
@@ -25,7 +26,9 @@ const isValidEmail = (value) => {
   return "Please enter a valid email address.";
 };
 
-export default function Login() {
+export default function UploadClient() {
+  const {userData}=useUser()
+
   useEffect(() => {
     document.title = "UPLOAD CLIENT - Sunga";
   }, []);
@@ -35,11 +38,40 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const onSubmit = data => {
+    const uploadData={
+      client_name:data.clientName,
+      client_email: data.clientEmail,
+      client_NRC: data.clientNRC,
+      client_number:data.clientNumber,
+      due_date: null,
+      interestRate:data.interestRate,
+      date_collected:data.dateCollected,
+      user_id:userData.id,
+      total_amount: 'test',
+      collatral_item:data.collatralItem
+
+    }
+    console.log(uploadData)
+   axios.post('/api/client/uploadclient',uploadData)
+  .then(response => {
+     console.log(response.data)
+
+      navigate('/');
+
+
+  })
+  .catch(error => {
+   if(error.response.status===401){
+  console.log(response)
+   }
+  });
+
+   
   };
+ 
 
   return (
     <div style={styles.pageBackground}>

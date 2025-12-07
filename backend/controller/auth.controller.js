@@ -61,7 +61,7 @@ class AuthController {
 
   try{
     const decoded = jwtMaster.masterVerify(auth_token);
-    res.status(200).json({id:decoded.id,email:decoded.email,businessname:decoded.businessname});
+    res.status(200).json({id:decoded.id,email:decoded.email,businessname:decoded.username});
     }
     catch(err){
 
