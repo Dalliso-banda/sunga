@@ -41,16 +41,36 @@ export default function UploadClient() {
 
 
   const onSubmit = data => {
+
+    const getDueDate=(startDate,periodInWeeks)=>{
+
+      const start= new Date(startDate);
+      const days = periodInWeeks * 7;
+      start.setDate(start.getDate() + days);
+      return start.toISOString().split('T')[0]; 
+
+    }
+   const getInterest=(rateInPercent,principal,periodInWeeks)=>{
+   const rate = rateInPercent/100;
+    const time=periodInWeeks/52;
+      const interest = (principal * rate * time);
+      return interest.toPrecision(4);
+   }
+const getTotalAmount=(principal,interest)=>{
+  const amount=parseFloat(principal)+parseFloat(interest)
+  return amount.toFixed(2);
+}
+//pardon me here interestRate corresponds to just interest
     const uploadData={
       client_name:data.clientName,
       client_email: data.clientEmail,
       client_NRC: data.clientNRC,
       client_number:data.clientNumber,
-      due_date: null,
-      interestRate:data.interestRate,
+      due_date: getDueDate(data.dateCollected,data.periodInWeeks),
+      interestRate:getInterest(data.interestRate,data.amountCollected,data.periodInWeeks),
       date_collected:data.dateCollected,
       user_id:userData.id,
-      total_amount: 'test',
+      total_amount:getTotalAmount(data.amountCollected,getInterest(data.interestRate,data.amountCollected,data.periodInWeeks)),
       collatral_item:data.collatralItem
 
     }
@@ -200,7 +220,21 @@ export default function UploadClient() {
                       {errors.interestRate?.message}
                     </Form.Control.Feedback>
                   </Form.Group>
-
+     
+                  <Form.Group className="mb-4">
+                    <Form.Label>Amount collected</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="enter amount collected eg 5000 for five thousandkwacha "
+                      {...register("amountCollected", {
+                        required: "Amount collected is required.",
+                      })}
+                      isInvalid={!!errors.amountCollected}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.amountCollected?.message}
+                    </Form.Control.Feedback>
+                  </Form.Group>
                   <Form.Group className="mb-4">
                     <Form.Label>period in weeks</Form.Label>
                     <Form.Control

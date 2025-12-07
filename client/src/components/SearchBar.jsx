@@ -42,7 +42,7 @@ useEffect(() => {
 
   return (
     <>
-<div  className='d-flex align-items-center' g-3>
+<div  className='d-flex align-items-center g-3' >
         <InputGroup className="m-3 w-75">
       <FormControl
         placeholder="Search..."
@@ -62,7 +62,7 @@ useEffect(() => {
             <h5>Search Results:</h5>
             <ul>
                 {results.map((result, index) => (
-                    <li className='nav-link' key={index}>{result.title}</li> // Adjust based on your API response structure
+                    <li className='nav-link' key={index}>{result.title}</li> 
                 ))}
 
             </ul>
