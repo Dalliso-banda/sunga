@@ -15,6 +15,7 @@ import {useUser} from './contexts/UserAuthContext.jsx'
 import KnowledgeBase from './pages/KnowledgeBase.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 import ProtectedRoutes from './components/ProtectedRoutes.jsx'
+import PublicOnlyRoutes from './components/PublicOnlyRoutes.jsx'
 
 const router = createBrowserRouter(
 [
@@ -24,6 +25,9 @@ const router = createBrowserRouter(
  
 },
 {
+  element:<PublicOnlyRoutes/>,
+  children:[
+    {
    path: '/signup',
   element:<SignUp/>
  
@@ -32,6 +36,8 @@ const router = createBrowserRouter(
    path: '/login',
   element:<LoginPage/>
  
+}
+  ]
 },
 {
   element:<ProtectedRoutes/>,

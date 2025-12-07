@@ -9,6 +9,6 @@ export default function PublicOnlyRoutes() {
         return <div className='d-flex justify-content-center align-items-center mt-5'><Spinner variant='primary' ></Spinner>.</div>
     }
   return (
-    isLoggedin ? <Outlet/> : <Navigate to="/login"/>
+    isLoggedin ===false? <Outlet/> : <Navigate to="/dashboard"/>
   )
 }
