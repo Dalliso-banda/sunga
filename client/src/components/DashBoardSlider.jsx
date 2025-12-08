@@ -16,6 +16,7 @@ useEffect(()=>{
     fetchClients();
 
 },[])
+
 const calculateOverdueLoans = () => {
     const now = new Date();
     let count = 0;
@@ -28,7 +29,17 @@ const calculateOverdueLoans = () => {
     });
     return count;
 }
+const calculateActiveBorrowers = () => {
+       const count =0;
+    clientData.forEach(client => {
+        if(client.status==0){
+            count ++
+        }
+    });
+            
+    }
 
+}
     return (
         <Container className="d-flex justify-content-center align-items-center">
             <Row className="m-3 w-75">
@@ -42,7 +53,7 @@ const calculateOverdueLoans = () => {
                         <Card.Body>
                             <Card.Text>Active Borrowers</Card.Text>
                             <Card.Title style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                        
+                        {calculateActiveBorrowers()}
                             </Card.Title>
                         </Card.Body>
                     </Card>
