@@ -1,8 +1,32 @@
 import clientModule from '../models/clients.js'
+import jwtMaster from '../auth/jwtSigner.js';
+
 class ClientController {
     async UploadClient(req,res){
-   clientModule.uploadClientData(req.body)
+        const uploadedClientData = req.body
+        uploadedClientData.status=0
+   clientModule.uploadClientData(uploadedClientData)
    
+   
+    }
+    async getClient(req,res){
+        try{
+            const auth_token= req.cookies['auth_token'];
+            const decoded = jwtMaster.masterVerify(auth_token);
+              if(!auth_token){
+    return res.status(401).json( {message:'unauthenticated'})
+
+  }
+      const clientData =  await clientModule.getClientData(decoded.id);
+
+      console.log(
+        clientData
+      )
+
+   res.status(200).json(clientData)
+            
+}catch(err){console.log(err)}
+
     }
 }
 

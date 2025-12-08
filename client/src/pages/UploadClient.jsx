@@ -28,6 +28,7 @@ const isValidEmail = (value) => {
 
 export default function UploadClient() {
   const {userData}=useUser()
+  let navigate = useNavigate()
 
   useEffect(() => {
     document.title = "UPLOAD CLIENT - Sunga";
@@ -77,7 +78,7 @@ const getTotalAmount=(principal,interest)=>{
     console.log(uploadData)
    axios.post('/api/client/uploadclient',uploadData)
   .then(response => {
-     console.log(response.data)
+  
 
       navigate('/');
 
