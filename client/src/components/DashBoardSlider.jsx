@@ -11,7 +11,7 @@ const [overdueLoans,setOverdualLoans]= useState(null)
 useEffect(()=>{
    
     const fetchClients=()=>{
-    axios.get('/api/client/getclients').then(res=>setClientData(res.data)).catch(err=>console.log(err))
+    axios.get('/api/client/getclients').then(res=>setClientData(res.data)).catch(err=>console.error(err))
     }
     fetchClients();
 

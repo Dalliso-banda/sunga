@@ -2,12 +2,16 @@ import clientModule from '../models/clients.js'
 import jwtMaster from '../auth/jwtSigner.js';
 
 class ClientController {
-    async UploadClient(req,res){
+    async UploadClient(req,res){  
         const uploadedClientData = req.body
         uploadedClientData.status=0
-   clientModule.uploadClientData(uploadedClientData)
-   
-   
+        try{
+  await clientModule.uploadClientData(uploadedClientData)
+      res.status(200).json({message:'client data uploaded successfully'})
+
+        }catch(err){
+          res.status(500).json({message:'Internal server error'})
+        }
     }
     async getClient(req,res){
         try{

@@ -9,14 +9,7 @@ import FormPageDesign from "../styles/FormPage.jsx";
 
 const styles = FormPageDesign();
 
-const isValidNumber = (value) => {
-  const numberRegex = /^\d+$/;
 
-  if (numberRegex.test(value)) {
-    return true;
-  }
-  return "Please enter a valid number.";
-};
 
 const isValidEmail = (value) => {
   const emailRegex = /^\S+@\S+\.\S+$/;
@@ -78,7 +71,7 @@ const getTotalAmount=(principal,interest)=>{
 
    axios.post('/api/client/uploadclient',uploadData)
   .then(response => {
-    console.log(response)
+    console.table(response.data);
     navigate('/dashboard');
   })
   .catch(error => {
@@ -128,8 +121,18 @@ const getTotalAmount=(principal,interest)=>{
                       placeholder="Enter client email or phone number"
                       {...register("clientNumber", {
                         required: "Phone Number is required.",
+                    maxLength:{
+                          value: 10,
+                          message: 'input valid phone number'
 
-                        validate: isValidNumber,
+                        },
+                        minLength:{
+                          value: 10,
+                          message: 'input valid phone number'
+                          
+                        }
+
+                      
                       })}
                       isInvalid={!!errors.clientNumber}
                     />
