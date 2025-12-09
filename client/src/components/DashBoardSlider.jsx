@@ -16,7 +16,7 @@ useEffect(()=>{
     fetchClients();
 
 },[])
-
+ 
 const calculateOverdueLoans = () => {
     const now = new Date();
     let count = 0;
@@ -29,17 +29,31 @@ const calculateOverdueLoans = () => {
     });
     return count;
 }
-const calculateActiveBorrowers = () => {
-       const count =0;
+const calculatePendingBorrowers = () => {
+       let count =0;
     clientData.forEach(client => {
         if(client.status==0){
             count ++
         }
     });
-            
-    }
-
+    return count;
 }
+const calculateGrossIncome = () => {
+    let totalIncome = 0;
+    clientData.forEach(client => {
+
+        totalIncome += parseFloat(client.total_amount )|| 0;
+    });
+    return totalIncome;
+}
+const calculateProfit=()=>{
+    let totalProfit =0;
+    clientData.forEach(client=>{
+        totalProfit += (parseFloat(client.interest)  )||0;
+    })
+    return totalProfit;
+}
+
     return (
         <Container className="d-flex justify-content-center align-items-center">
             <Row className="m-3 w-75">
@@ -51,9 +65,9 @@ const calculateActiveBorrowers = () => {
               
                     <Card className="p-3 shadow-sm flex-shrink-0" style={{ width: '12rem', height: '8rem' }}>
                         <Card.Body>
-                            <Card.Text>Active Borrowers</Card.Text>
+                            <Card.Text>Pending debtors</Card.Text>
                             <Card.Title style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                        {calculateActiveBorrowers()}
+                        {calculatePendingBorrowers()}
                             </Card.Title>
                         </Card.Body>
                     </Card>
@@ -67,13 +81,28 @@ const calculateActiveBorrowers = () => {
                     </Card>
                     <Card className="p-3 shadow-sm flex-shrink-0" style={{ width: '12rem', height: '8rem' }}>
                         <Card.Body>
-                            <Card.Text>Gross income</Card.Text>
-                            <Card.Title style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                                      
+                            <Card.Text>Expected income</Card.Text>
+                            <Card.Title style={{ fontSize: '1rem', fontWeight: 'bold' ,color:'green'}}>
+                                 k{calculateGrossIncome().toFixed(2)}
                             </Card.Title>
                         </Card.Body>
                     </Card>
-              
+                      <Card className="p-3 shadow-sm flex-shrink-0" style={{ width: '12rem', height: '8rem' }}>
+                        <Card.Body>
+                            <Card.Text>Total borrowers </Card.Text>
+                            <Card.Title style={{ fontSize: '1.5rem', fontWeight: 'bold' ,color:'green'}}>
+                                      {clientData.length}
+                            </Card.Title>
+                        </Card.Body>
+                    </Card>
+                       <Card className="p-3 shadow-sm flex-shrink-0" style={{ width: '12rem', height: '8rem' }}>
+                        <Card.Body>
+                            <Card.Text> Profit</Card.Text>
+                            <Card.Title style={{ fontSize: '1.5rem', fontWeight: 'bold' ,color:'green'}}>
+                                   {calculateProfit().toFixed(2)}
+                            </Card.Title>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
         </Container>

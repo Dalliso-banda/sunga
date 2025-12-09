@@ -28,7 +28,7 @@ const isValidEmail = (value) => {
 
 export default function UploadClient() {
   const {userData}=useUser()
-  let navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "UPLOAD CLIENT - Sunga";
@@ -75,18 +75,15 @@ const getTotalAmount=(principal,interest)=>{
       collatral_item:data.collatralItem
 
     }
-    console.log(uploadData)
+
    axios.post('/api/client/uploadclient',uploadData)
   .then(response => {
-  
-
-      navigate('/');
-
-
+    console.log(response)
+    navigate('/dashboard');
   })
   .catch(error => {
    if(error.response.status===401){
-  console.log(response)
+  console.log(error)
    }
   });
 
@@ -252,7 +249,7 @@ const getTotalAmount=(principal,interest)=>{
                   </Form.Group>
 
                   <Button className="w-100 " style={styles.primaryButton} type="submit">
-                    Log In
+                   Upload Client
                   </Button>
                 </Card.Body>
               </Form>
