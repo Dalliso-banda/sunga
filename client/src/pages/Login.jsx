@@ -38,14 +38,8 @@ export default function Login() {
       
    axios.post('/api/auth/login',data)
   .then(response => {
-     console.log(response.data)
-     try{
-     login(response.data)
-
-     }
-     catch(error){
-      cosole.log(error)
-     }
+  
+login(response.data);
       navigate('/');
 
 

@@ -2,7 +2,7 @@ import {useUser} from '../contexts/UserAuthContext.jsx'
 import { Navigate,Outlet } from 'react-router-dom'
 import {Spinner} from 'react-bootstrap'
 
-export default function PublicOnlyRoutes() {
+export default function ProtectedRoutes() {
     const {isLoggedin,isLoading}=useUser();
     console.log(isLoggedin)
     if(isLoading){

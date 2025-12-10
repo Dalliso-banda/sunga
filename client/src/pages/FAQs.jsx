@@ -32,7 +32,7 @@ export default function FAQs(){
        <h1 className="m-2"><b>FAQs</b></h1>
        <Container>
        {faqs.map((faq, idx) => (
-         <Card key={idx} className="mb-3 p-3">
+         <Card key={idx} className="mb-3 p-2">
          <Card.Body>
            <details>
              <summary>{faq.summary}</summary>

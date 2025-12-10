@@ -72,7 +72,7 @@ const getTotalAmount=(principal,interest)=>{
    axios.post('/api/client/uploadclient',uploadData)
   .then(response => {
     console.table(response.data);
-    navigate('/dashboard');
+    navigate('/dashboard')
   })
   .catch(error => {
    if(error.response.status===401){

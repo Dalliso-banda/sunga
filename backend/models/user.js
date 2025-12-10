@@ -31,7 +31,7 @@ class UserModel{
         return results.rows[0]
     }
         async getUserByUserNumber(number){
-        const sql= `SELECT * FROM ${Tables.users} WHERE number=$1`
+        const sql= `SELECT * FROM ${Tables.users} WHERE number=$1 `
         const params= [number]
         const results= await this.db.query (sql, params)
         return results.rows[0]

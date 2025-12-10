@@ -1,30 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 import context from 'react-bootstrap/esm/AccordionContext';
-
+import {Spinner} from 'react-bootstrap';
+import axios from 'axios'
 
 
 
 
 function LenderCards() {
-  const lenders = [
-    { name: "Bank A", info: ["Loan: $5000", "Due: Jan 2026"], overdue: false,interest:'100',collatera:'iphone'  },
-    { name: "Bank B", info: ["Loan: $2000", "Due: Oct 2025"], overdue: true ,interest:'100',collatera:'iphone' },
-    { name: "Bank C", info: ["Loan: $7500", "Due: Dec 2025"], overdue: false,interest:'100',collatera:'iphone' },
-  ];
+  const [clients,setClients]=useState([]);
+  const [isLoading,setisLoading]=useState(true)
+useEffect(()=>{
+
+const fetchClients=  ()=>{
+  try{
+        axios.get('/api/client/getclients').then(
+          res=>{
+      setClients(res.data)
+          }
+        )
+  }
+  catch(err){
+    console.log(err)
+  }
+  finally{
+    setisLoading(false)
+  }
+}
+  fetchClients();
+   
+},[])
+console.log(clients[0])
 
   return (
     <Container className="py-4">
-      <Row className="g-4">
-        {lenders.map((lender, idx) => (
-          <Col md={4} sm={6} xs={12} key={idx}>
-            <Card className={`lender-card ${lender.overdue ? "overdual" : ""}`}>
+  { !isLoading?   <Row className="g-4">
+     
+          <Col md={4} sm={6} xs={12} >
+     {clients.map((client)=>
+            <Card className={`lender-card` }  key={client.id}>
               <Card.Body>
-                <Card.Title className="lender-header">{lender.name}</Card.Title>
+                <Card.Title className="lender-header">{client.client_name}</Card.Title>
                 <div className="lender-info">
-                  {lender.info.map((item, i) => (
-                    <div key={i}>{item}</div>
-                  ))}
+                 <b> AMOUNT</b>: k {client.total_amount}
+                  <br></br>
+            
+               <b>   Date collected</b>: {client.date_collected}
+                          <br></br>
+               <b>   dual date</b>: {client.due_data}
+                          <br></br>
+                  <b>collatral</b>: {client.collatral_item}
+                          <br></br>
+                    <b>   Interest</b>: K{client.interest}
+
                 </div>
                 <div className="action-buttons mt-3">
                   <Button variant='success' >Clear</Button>
@@ -32,9 +60,12 @@ function LenderCards() {
                 </div>
               </Card.Body>
             </Card>
+     )
+
+  }
           </Col>
-        ))}
-      </Row>
+  
+      </Row>:<Spinner></Spinner>}
     </Container>
   );
 }

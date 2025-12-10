@@ -8,7 +8,10 @@ import { useUser } from '../contexts/UserAuthContext.jsx';
 
 
 export default function DashBoard() {
+  
+
   const {userData}=useUser();
+
   return (
    <>
    <NavBar />

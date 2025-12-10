@@ -13,7 +13,7 @@ return(<>
     <Image src='../../public/vite.svg' className=" m-3 w-100"></Image>
     </div>
     <div className="m-auto">
-        <h4>
+        <h4> 
         {name}    {name}
         </h4>
         <p>

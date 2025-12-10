@@ -31,7 +31,7 @@ useEffect(()=>{
             setUserData (null)
             setIsLoggedin (false)
             setIsLoading(false)
-            console.error('Error fetching user data:', error);
+    
             
         }
     }
