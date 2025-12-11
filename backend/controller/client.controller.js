@@ -4,7 +4,7 @@ import jwtMaster from '../auth/jwtSigner.js';
 class ClientController {
     async UploadClient(req,res){  
         const uploadedClientData = req.body
-        uploadedClientData.status=0
+        uploadedClientData.status='0'
         try{
   await clientModule.uploadClientData(uploadedClientData)
       res.status(200).json({message:'client data uploaded successfully'})
@@ -26,7 +26,7 @@ class ClientController {
       console.log(
         clientData
       )
-
+     
    res.status(200).json(clientData)
             
 }catch(err){console.log(err)}

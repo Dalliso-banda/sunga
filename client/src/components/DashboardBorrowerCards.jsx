@@ -8,7 +8,8 @@ import axios from 'axios'
 
 
 function LenderCards() {
-  const [clients,setClients]=useState([]);
+  
+  const [debtors,setDebtors]= useState([])
   const [isLoading,setisLoading]=useState(true)
 useEffect(()=>{
 
@@ -16,7 +17,10 @@ const fetchClients=  ()=>{
   try{
         axios.get('/api/client/getclients').then(
           res=>{
-      setClients(res.data)
+    const debtorsArray=res.data.filter((debtor)=>{debtor?})
+
+      setDebtors(debtorsArray)
+
           }
         )
   }
@@ -30,36 +34,42 @@ const fetchClients=  ()=>{
   fetchClients();
    
 },[])
-console.log(clients[0])
+
+console.log(debtors)
+
 
   return (
     <Container className="py-4">
   { !isLoading?   <Row className="g-4">
      
           <Col md={4} sm={6} xs={12} >
-     {clients.map((client)=>
-            <Card className={`lender-card` }  key={client.id}>
+     {debtors.map((debtor)=>
+  
+
+            <Card className={`lender-card` }  key={debtor.id}>
               <Card.Body>
-                <Card.Title className="lender-header">{client.client_name}</Card.Title>
+                <Card.Title className="lender-header">{debtor.client_name}</Card.Title>
                 <div className="lender-info">
-                 <b> AMOUNT</b>: k {client.total_amount}
+                 <b> AMOUNT</b>: k {debtor.total_amount}
                   <br></br>
             
-               <b>   Date collected</b>: {client.date_collected}
+               <b>   Date collected</b>: {debtor.date_collected}
                           <br></br>
-               <b>   dual date</b>: {client.due_data}
+               <b>   dual date</b>: {debtor.due_data.slice(0,10)}
                           <br></br>
-                  <b>collatral</b>: {client.collatral_item}
+                  <b>collatral</b>: {debtor.collatral_item}
                           <br></br>
-                    <b>   Interest</b>: K{client.interest}
+                    <b>   Interest</b>: K{debtor.interest}
 
                 </div>
+                {debtor.id}
                 <div className="action-buttons mt-3">
                   <Button variant='success' >Clear</Button>
                   <Button className="m-4">History</Button>
                 </div>
               </Card.Body>
             </Card>
+
      )
 
   }
