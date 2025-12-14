@@ -41,7 +41,7 @@ console.log(client)
   
     <Nav/>
     <div className='w-100 d-flex flex-column align-items-center p-2'>
-<ProfileHolder has_paid={client.has_paid } email='test' name={client.client_name}number='test' />
+<ProfileHolder has_paid={client.has_paid } email='test' name={client.client_name} number={client.client_number}/>
 </div>
  <h1 className='m-3'>loan History</h1>
  <div className='w-90 m-3 d-flex align-items-center  justify-content-center '>
@@ -58,20 +58,7 @@ console.log(client)
           <Card.Header>
             credit history
           </Card.Header>
-      <ol>
-        <li>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore animi accusantium sapiente praesentium, accusamus, enim iusto dolores, tempore eligendi culpa nemo aliquid expedita ratione ipsum possimus voluptatibus rem laboriosam.
-        </li>
-              <li>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore animi accusantium sapiente praesentium, accusamus, enim iusto dolores, tempore eligendi culpa nemo aliquid expedita ratione ipsum possimus voluptatibus rem laboriosam.
-        </li>
-              <li>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore animi accusantium sapiente praesentium, accusamus, enim iusto dolores, tempore eligendi culpa nemo aliquid expedita ratione ipsum possimus voluptatibus rem laboriosam.
-        </li>
-              <li>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore animi accusantium sapiente praesentium, accusamus, enim iusto dolores, tempore eligendi culpa nemo aliquid expedita ratione ipsum possimus voluptatibus rem laboriosam.
-        </li>
-      </ol>
+
         </Card>
     
    </Col>
