@@ -37,13 +37,28 @@ class ClientController {
 
     }
 
+
   async clearLoan(req,res){
     try{
-      const {clientId}= req.body;
-      if(!clientId){
-        return res.status(400).json({message:'clientId not provided'})
-      }
-      const dbRes = await clientModule.clearDebt(clientId);
+
+   console.log('clear loan called',req.body)
+
+      const paymentDetails= req.body;
+
+
+
+
+try {
+    const dbRes = await clientModule.clearDebt(paymentDetails.clientId);
+    // If clearDebt succeeds, proceed to trackPayment
+    await clientModule.trackPayment(paymentDetails);
+    console.log("Debt cleared and payment tracked successfully.");
+
+} catch (error) {
+    console.error("An error occurred during payment processing:", error);
+    return res.status(500).json({message:'Error processing payment'});
+}
+
       res.status(200).json({message:'debt cleared successfully'})
     }catch(err){
       res.status(500).json({message:'Internal server error'})

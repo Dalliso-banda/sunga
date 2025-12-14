@@ -45,6 +45,7 @@ class ClientModel {
    
 
    async clearDebt(clientId){
+    console.log(clientId)
     if(!clientId){
       throw new Error('expected clientId but received none')
     }       
@@ -54,5 +55,22 @@ class ClientModel {
     const dbRes = await this.db.query(sql,params);
     return dbRes.rows;
   }
+
+  async trackPayment(paymentDetails){
+    console.log(paymentDetails,'from tracking payment')
+    if(!paymentDetails){
+      throw new Error('expected paymentDetails but received none')
+    } 
+      console.log('success     ')
+    const params=   [paymentDetails.usersId,paymentDetails.clientId,paymentDetails.daysPast]
+    try{
+            const sql = `INSERT INTO payment (users_id,client_id, days_past) VALUES ($1, $2, $3) RETURNING id`
+    const dbRes = await this.db.query(sql,params);
+    return dbRes.rows;
+    }
+catch(err){
+  console.log(err)
+  }
+}
 }
 export default new ClientModel()

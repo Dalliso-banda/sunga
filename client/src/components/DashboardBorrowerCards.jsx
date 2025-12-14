@@ -42,12 +42,24 @@ debtors.forEach((entry)=>{
    console.log(entry.paid)
 })
 
+const calculateDaysPast=(dueDate)=>{
+  const currentDate= new Date();
+  const due= new Date(dueDate);
+  const timeDiff= currentDate - due;
+  const daysPast= Math.floor(timeDiff/(1000*60*60*24));
 
-const clearDebt= async(clientId)=>{
+  if(daysPast<0){
+    return 0;
+  }
+  return daysPast;
+}
+const clearDebt= async(client)=>{
+  console.log(calculateDaysPast(client.due_data))
   try{
-    axios.post('/api/client/cleardebt',{clientId:clientId}).then(
+
+    axios.post('/api/client/cleardebt',{clientId:client.id,userId:client.users_id,daysPast:calculateDaysPast(client.due_data)}).then(
       res=>{
-        const updatedDebtors= debtors.filter((debtor)=>debtor.id!==clientId)
+        const updatedDebtors= debtors.filter((debtor)=>debtor.id!==client.id)
         setDebtors(updatedDebtors)
       }
     )
@@ -82,7 +94,7 @@ return (
                 <b>Interest</b>: K{debtor.interest}
               </div>
               <div className="action-buttons d-flex justify-content-end">
-                <Button variant='success' className='m-3' onClick={() =>clearDebt(debtor.id)}>Clear</Button>
+                <Button variant='success' className='m-3' onClick={() =>clearDebt(debtor)}>Clear</Button>
            
                 <Button className="m-3" onClick={()=>navigateTo(debtor.id)}>
                 History
