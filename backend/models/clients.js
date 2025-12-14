@@ -57,14 +57,14 @@ class ClientModel {
   }
 
   async trackPayment(paymentDetails){
-    console.log(paymentDetails,'from tracking payment')
+ 
     if(!paymentDetails){
       throw new Error('expected paymentDetails but received none')
     } 
       console.log('success     ')
-    const params=   [paymentDetails.usersId,paymentDetails.clientId,paymentDetails.daysPast]
+    const params=   [paymentDetails.usersId,paymentDetails.daysPast,paymentDetails.client_NRC]
     try{
-            const sql = `INSERT INTO payment (users_id,client_id, days_past) VALUES ($1, $2, $3) RETURNING id`
+            const sql = `INSERT INTO payment (users_id, days_past,client_nrc) VALUES ($1, $2, $3) RETURNING id`
     const dbRes = await this.db.query(sql,params);
     return dbRes.rows;
     }

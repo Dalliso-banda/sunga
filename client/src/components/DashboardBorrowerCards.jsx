@@ -57,7 +57,7 @@ const clearDebt= async(client)=>{
   console.log(calculateDaysPast(client.due_data))
   try{
 
-    axios.post('/api/client/cleardebt',{clientId:client.id,userId:client.users_id,daysPast:calculateDaysPast(client.due_data)}).then(
+    axios.post('/api/client/cleardebt',{clientId:client.id,userId:client.users_id,daysPast:calculateDaysPast(client.due_data),client_NRC:client.client_nrc}).then(
       res=>{
         const updatedDebtors= debtors.filter((debtor)=>debtor.id!==client.id)
         setDebtors(updatedDebtors)
