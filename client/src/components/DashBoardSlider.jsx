@@ -11,7 +11,12 @@ const [overdueLoans,setOverdualLoans]= useState(null)
 useEffect(()=>{
    
     const fetchClients=()=>{
-    axios.get('/api/client/getclients').then(res=>setClientData(res.data)).catch(err=>console.error(err))
+    axios.get('/api/client/getclients').then(res=>{
+    let data  = res.data;
+    const debtorsArray = data.filter((client)=>client.has_paid==false)
+    setClientData(debtorsArray)
+      
+    }).catch(err=>console.error(err))
     }
     fetchClients();
 
