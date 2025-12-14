@@ -48,7 +48,7 @@ const router = createBrowserRouter(
 
 
 },{
-   path: '/clienthistory',
+   path: '/clienthistory/:id',
   element:<ClientHistory/>
  
 },{

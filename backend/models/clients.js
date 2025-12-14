@@ -19,7 +19,20 @@ class ClientModel {
      const query = await this.db.query(sql,params)
   }
 
-  async getClientData(id){
+  async getClientDataById(id){
+   if(!id)
+    return 'id was not provided'
+     const sql =`select * from ${this.table} where id=${id}`
+     const dbRes = await this.db.query(sql);
+    const clients = dbRes.rows;
+
+    return clients
+
+   }
+
+
+     async getClientsByUserId(id){
+    
    if(!id)
     return 'id was not provided'
      const sql =`select * from ${this.table} where users_id=${id}`
@@ -29,6 +42,7 @@ class ClientModel {
     return clients
 
    }
+   
 
    async clearDebt(clientId){
     if(!clientId){

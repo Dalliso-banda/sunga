@@ -1,11 +1,12 @@
-import jwt from 'jsonwebtoken'
-import  dotEnv from 'dotenv/config';
+import express from 'express'
+
+const app=express();
 
 
-const testToken= jwt.sign({ id:1, email:"test@example.com" },process.env.JWT_SECRET , { expiresIn: '1h' });
+app.get('/test/:id', (req, res) => {
 
-console.log("Generated Test Token:", testToken);
-
-const decoded= jwt.verify(testToken, process.env.JWT_SECRET);
-
-console.log("Decoded Token Payload:", decoded);
+console.log(req.params.id)
+})
+app.listen(4000,()=>{
+    console.log('Test server running on port 4000')
+})

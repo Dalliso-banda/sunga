@@ -9,10 +9,10 @@ server.use(cookieParser());
 server.use(express.json());
 
 server.use('/api', MainRouter);
-server.get('/test', (req, res) => {
-    res.send('Test route working');
+server.get('/test/getcientbyid/:id', (req, res) => {
+    console.log(req.params.id);
 });
 
 server.listen(port, () => {    
     console.log(`Server is running on port ${port}`);
-}); 
+});

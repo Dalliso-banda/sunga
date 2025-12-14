@@ -3,12 +3,14 @@ import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 import context from 'react-bootstrap/esm/AccordionContext';
 import {Spinner} from 'react-bootstrap';
 import axios from 'axios'
+import {Link} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 function LenderCards() {
-  
+  const navigate = useNavigate()
   const [debtors,setDebtors]= useState([])
   const [isLoading,setisLoading]=useState(true)
 useEffect(()=>{
@@ -17,6 +19,7 @@ const fetchClients=  ()=>{
   try{
         axios.get('/api/client/getclients').then(
           res=>{
+            console.table(res.data)
     const debtorsArray=res.data.filter((debtor)=>debtor.has_paid==false)
 
       setDebtors(debtorsArray)
@@ -53,6 +56,11 @@ const clearDebt= async(clientId)=>{
   }
 }
 
+const navigateTo= async (debtorId)=>{
+
+  navigate(`/clienthistory/${debtorId}`)
+}
+console.log(debtors)
 return (
   <Container className="py-4">
     <h2 className="mb-4">Debtors</h2>
@@ -75,7 +83,11 @@ return (
               </div>
               <div className="action-buttons d-flex justify-content-end">
                 <Button variant='success' className='m-3' onClick={() =>clearDebt(debtor.id)}>Clear</Button>
-                <Button className="m-3">History</Button>
+           
+                <Button className="m-3" onClick={()=>navigateTo(debtor.id)}>
+                History
+                </Button>
+      
               </div>
             </Card.Body>
           </Card>
