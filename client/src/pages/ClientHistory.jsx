@@ -13,7 +13,7 @@ export default function ClientHistory() {
   const [clientHistory,setClientHistory]= useState([])
 
   const{id}=useParams();
- const nrc =client.client_nrc
+
     useEffect(() => {   
         document.title = 'Client History - Sunga';
     }, []);
@@ -37,11 +37,11 @@ export default function ClientHistory() {
 
    useEffect(() => {
       
-    const fetchHistory=()=>{
+    const fetchHistory=(nrc)=>{
 if(nrc){
        try{
-          let test ='12-324-2'
-      axios.get(`/api/client/paymenthistory/${test}`).then(
+        console.log(nrc)
+      axios.get(`/api/client/paymenthistory/${nrc.toString()}`).then(
         res=>{
           console.log(res.data[0])
           setClientHistory(res.data[0])
@@ -52,7 +52,7 @@ if(nrc){
      }  
 }
   }
-  fetchHistory();
+  fetchHistory(client.client_nrc);
    },[client])
    console.log(clientHistory)
 

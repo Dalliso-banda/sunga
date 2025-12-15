@@ -58,7 +58,7 @@ const getTotalAmount=(principal,interest)=>{
     const uploadData={
       client_name:data.clientName,
       client_email: data.clientEmail,
-      client_NRC: data.clientNRC,
+      client_NRC: data.clientNRC.replaceAll('/','-'),
       client_number:data.clientNumber,
       due_date: getDueDate(data.dateCollected,data.periodInWeeks),
       interestRate:getInterest(data.interestRate,data.amountCollected,data.periodInWeeks),
