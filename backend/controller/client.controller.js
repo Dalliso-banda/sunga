@@ -44,7 +44,7 @@ class ClientController {
    console.log('clear loan called',req.body)
 
       const paymentDetails= req.body;
-
+ console.log(paymentDetails,'from control')
 
 
 

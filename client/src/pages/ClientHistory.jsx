@@ -79,9 +79,9 @@ const calculateGoodDebtors= (history)=>{
     })
     return count;
 }
-
-
-
+let goodDebts = calculateGoodDebtors(clientHistory)
+let badDebts = calculateBadDebtors(clientHistory)
+const score =goodDebts/clientHistory.length * 100;
   return (
     <>
   
@@ -95,7 +95,7 @@ const calculateGoodDebtors= (history)=>{
 
 <Row  className='w-100 d-flex  g-4 align-items-center  justify-content-center  ' >
    <Col  xs={12}  sm={5}>
-           <ClientHistoryChartAnalysis data={[ calculateGoodDebtors(clientHistory),calculateBadDebtors(clientHistory)]}/>
+           <ClientHistoryChartAnalysis data={[goodDebts ,badDebts]}/>
     
    </Col>
 
@@ -104,9 +104,33 @@ const calculateGoodDebtors= (history)=>{
           <Card.Header>
             credit history
           </Card.Header>
+          <ul>
+         { clientHistory.map((payment)=>(
+
+        <li key={payment.id} className='nav-link m-2 '>
+            Paid <i><strong>K{payment.amount_paid}</strong></i> on {payment.date_paid.slice(0,10).replaceAll('-','/')}
+        </li>
+         ))
+
+         }
+          </ul>
 
         </Card>
     
+   </Col>
+
+   <Col  className='' xs={12}  sm={5}>
+   
+    <Card>
+      <Card.Title className='m-1'>
+        System analysis
+      </Card.Title>
+    <div className='m-1'>
+       <b>Give loan</b>: {goodDebts>badDebts?<span className='text-success'>client is safe for furthur loans</span>:<p className='text-danger'>'do not give'</p>}
+      <br></br>
+        <b>Score </b>: {`${score.toFixed(3)}%`}
+    </div>
+    </Card>
    </Col>
 </Row>
 
