@@ -85,6 +85,26 @@ try {
       res.status(500).json({message:'Internal server error'})
     }
   }
+    async getClientHistoryByNrc(req,res){
+
+    try{
+      const {nrc}= req.params;
+      console.log(nrc,'here');
+
+      if(!nrc){
+        return res.status(400).json({message:'nrc not provided'})
+      }
+
+      const dbRes = await clientModule.getClientHistoryByNrc(nrc);
+       if(!dbRes){
+        return res.status(404).json({message:'client not found'})
+       }
+      res.status(200).json(dbRes)
+    }catch(err){
+      console.log(err)
+      res.status(500).json({message:'Internal server error'})
+    }
+  }
 }
 
 export default new ClientController();

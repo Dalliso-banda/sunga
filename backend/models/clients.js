@@ -42,7 +42,20 @@ class ClientModel {
     return clients
 
    }
-   
+        async getClientHistoryByNrc(nrc){
+
+          console.log(typeof
+nrc )
+    
+   if(!nrc)
+    return 'nrc was not provided'
+     const sql =`select * from payment where client_nrc=$1`
+     const dbRes = await this.db.query(sql,[nrc]);
+    const history = dbRes.rows;
+    console.log(history)
+    return history
+
+   }
 
    async clearDebt(clientId){
     console.log(clientId)
@@ -57,7 +70,7 @@ class ClientModel {
   }
 
   async trackPayment(paymentDetails){
- 
+       console.info('track method hit')
     if(!paymentDetails){
       throw new Error('expected paymentDetails but received none')
     } 
