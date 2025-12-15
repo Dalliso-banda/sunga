@@ -40,7 +40,7 @@ export default function Login() {
   .then(response => {
   
 login(response.data);
-      navigate('/');
+      navigate('/dashboard');
 
 
   })

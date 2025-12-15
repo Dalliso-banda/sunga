@@ -20,8 +20,9 @@ export default function ClientHistoryChartAnalysis({data}) {
       label: '# of Votes',
       data: data,
       backgroundColor: [
+          'hsla(120, 50%, 62%, 0.50)',
         'hsla(0, 71%, 49%, 0.96)',
-        'hsla(120, 50%, 62%, 0.50)',
+      
        
       ],
       borderWidth: 1,

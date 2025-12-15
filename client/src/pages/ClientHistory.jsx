@@ -44,7 +44,7 @@ if(nrc){
       axios.get(`/api/client/paymenthistory/${nrc.toString()}`).then(
         res=>{
           console.log(res.data[0])
-          setClientHistory(res.data[0])
+          setClientHistory(res.data)
         }
       )
      }catch(err){
@@ -53,10 +53,32 @@ if(nrc){
 }
   }
   fetchHistory(client.client_nrc);
+   
    },[client])
-   console.log(clientHistory)
 
 
+   
+
+const calculateBadDebtors= (history)=>{
+    let count =0;
+   history.forEach(entry=>{
+        if(entry.days_past>0){
+            count++
+        }
+    })
+    return count;
+}
+
+const calculateGoodDebtors= (history)=>{
+  console.log(history)
+    let count =0;
+   history.forEach(entry=>{
+        if(entry.days_past==0){
+            count++
+        }
+    })
+    return count;
+}
 
 
 
@@ -73,7 +95,7 @@ if(nrc){
 
 <Row  className='w-100 d-flex  g-4 align-items-center  justify-content-center  ' >
    <Col  xs={12}  sm={5}>
-           <ClientHistoryChartAnalysis/>
+           <ClientHistoryChartAnalysis data={[ calculateGoodDebtors(clientHistory),calculateBadDebtors(clientHistory)]}/>
     
    </Col>
 
