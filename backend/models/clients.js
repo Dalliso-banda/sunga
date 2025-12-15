@@ -22,8 +22,8 @@ class ClientModel {
   async getClientDataById(id){
    if(!id)
     return 'id was not provided'
-     const sql =`select * from ${this.table} where id=${id}`
-     const dbRes = await this.db.query(sql);
+     const sql =`select * from ${this.table} where id=$1`
+     const dbRes = await this.db.query(sql,[id]);
     const clients = dbRes.rows;
 
     return clients
@@ -44,9 +44,6 @@ class ClientModel {
    }
         async getClientHistoryByNrc(nrc){
 
-          console.log(typeof
-nrc )
-    
    if(!nrc)
     return 'nrc was not provided'
      const sql =`select * from payment where client_nrc=$1`
