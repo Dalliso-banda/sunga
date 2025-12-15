@@ -35,8 +35,8 @@ class ClientModel {
     
    if(!id)
     return 'id was not provided'
-     const sql =`select * from ${this.table} where users_id=${id}`
-     const dbRes = await this.db.query(sql);
+     const sql =`select * from ${this.table} where users_id=$1`
+     const dbRes = await this.db.query(sql,[id]);
     const clients = dbRes.rows;
 
     return clients
@@ -72,9 +72,9 @@ class ClientModel {
       throw new Error('expected paymentDetails but received none')
     } 
       console.log('success     ')
-    const params=   [paymentDetails.usersId,paymentDetails.daysPast,paymentDetails.client_NRC]
+    const params=   [paymentDetails.usersId,paymentDetails.daysPast,paymentDetails.client_NRC,paymentDetails.date_paid,paymentDetails.amount_paid]
     try{
-            const sql = `INSERT INTO payment (users_id, days_past,client_nrc) VALUES ($1, $2, $3) RETURNING id`
+            const sql = `INSERT INTO payment (users_id, days_past,client_nrc,date_paid,amount_paid) VALUES ($1, $2, $3,$4,$5) RETURNING id`
     const dbRes = await this.db.query(sql,params);
     return dbRes.rows;
     }

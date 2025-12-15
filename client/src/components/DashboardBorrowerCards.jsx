@@ -56,8 +56,13 @@ const calculateDaysPast=(dueDate)=>{
 const clearDebt= async(client)=>{
   console.log(calculateDaysPast(client.due_data))
   try{
+    let day = new Date().getDate()
+    let month = new Date().getMonth()
+    let year = new Date().getFullYear()
 
-    axios.post('/api/client/cleardebt',{clientId:client.id,userId:client.users_id,daysPast:calculateDaysPast(client.due_data),client_NRC:client.client_nrc}).then(
+   
+
+    axios.post('/api/client/cleardebt',{clientId:client.id,userId:client.users_id,daysPast:calculateDaysPast(client.due_data),client_NRC:client.client_nrc.replaceAll('/','-'),date_paid:`${day}/${month}/${year}`,amount_paid:client.total_amount}).then(
       res=>{
         const updatedDebtors= debtors.filter((debtor)=>debtor.id!==client.id)
         setDebtors(updatedDebtors)
