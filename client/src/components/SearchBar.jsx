@@ -6,7 +6,7 @@ import axios from 'axios';
  export default function SearchComponent() {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
-  const API_URL = 'https://jsonplaceholder.typicode.com/posts'; // Replace with your actual API endpoint
+  const API_URL = '/api/client/getclients';
 useEffect(() => {
     if (searchTerm.length === 0) {
         setResults([]);
@@ -17,9 +17,9 @@ useEffect(() => {
         try {
             const response = await axios.get(`${API_URL}`);
             console.log(response.data);
-           let isAvalible = response.data.filter(item => 
-               item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               item.body.toLowerCase().includes(searchTerm.toLowerCase())
+           let isAvalible = response.data.filter(client => 
+               client.client_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               client.client_number.toLowerCase().includes(searchTerm.toLowerCase())
            );
            if(!isAvalible){
                setResults([]);
@@ -58,11 +58,11 @@ useEffect(() => {
 </div>
     
     {results.length > 0?(
-        <div className="m-3 w-75 h-50 overflow-auto border p-2  " style={{maxHeight:'300px'}}>
+        <div className="m-3 w-75 h-25 overflow-auto border p-2  " style={{maxHeight:'25vh'}}>
             <h5>Search Results:</h5>
             <ul>
                 {results.map((result, index) => (
-                    <li className='nav-link' key={index}>{result.title}</li> 
+                    <li className='nav-link hover-shadow fw-bold pointer-cursor' key={index}>{result.client_name}  NRC:{result.client_nrc.replaceAll('-','/')}</li> 
                 ))}
 
             </ul>
