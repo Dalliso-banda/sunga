@@ -100,7 +100,7 @@ const score =goodDebts/clientHistory.length * 100;
    </Col>
 
    <Col  className='' xs={12}  sm={5}>
-        <Card>
+        <Card style={{maxHeight:'50vh', overflowY:'auto'}}>
           <Card.Header>
             credit history
           </Card.Header>
@@ -120,7 +120,7 @@ const score =goodDebts/clientHistory.length * 100;
    </Col>
 
    <Col  className='' xs={12}  sm={5}>
-   
+ 
     <Card>
       <Card.Title className='m-1'>
         System analysis
