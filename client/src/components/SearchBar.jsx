@@ -2,6 +2,7 @@ import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import {useState,useEffect} from 'react';
 import RegisterButton from '../components/RegisterClientButton.jsx';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
  export default function SearchComponent() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,7 +63,7 @@ useEffect(() => {
             <h5>Search Results:</h5>
             <ul>
                 {results.map((result, index) => (
-                    <li className='nav-link hover-shadow fw-bold pointer-cursor' key={index}>{result.client_name}  NRC:{result.client_nrc.replaceAll('-','/')}</li> 
+                    <Link to={`/clienthistory/${result.id}`} className='nav-link hover-shadow fw-bold pointer-cursor' key={index}>{result.client_name}  NRC:{result.client_nrc.replaceAll('-','/')}</Link> 
                 ))}
 
             </ul>
