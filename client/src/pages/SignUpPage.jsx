@@ -64,7 +64,7 @@ export default function Login() {
     })
     .then(response => {
         console.log('Signup successful:', response.data);
-      //  navigate('/login'); 
+           navigate('/login'); 
     })
     .catch(error => {
         console.error('There was an error signing up!', error);

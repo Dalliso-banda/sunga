@@ -46,9 +46,9 @@ export default function UploadClient() {
     }
    const getInterest=(rateInPercent,principal,periodInWeeks)=>{
    const rate = rateInPercent/100;
-    const time=periodInWeeks/52;
-      const interest = (principal * rate * time);
-      return interest.toPrecision(4);
+   //const time=periodInWeeks/52; dont use time SMEs redused 
+      const interest = (principal * rate );
+      return interest.toFixed(2);
    }
 const getTotalAmount=(principal,interest)=>{
   const amount=parseFloat(principal)+parseFloat(interest)
@@ -72,7 +72,7 @@ const getTotalAmount=(principal,interest)=>{
    axios.post('/api/client/uploadclient',uploadData)
   .then(response => {
     console.table(response.data);
-//navigate('/dashboard')
+   navigate('/dashboard')
   })
   .catch(error => {
    if(error.response.status===401){
