@@ -17,6 +17,7 @@ export function AuthProvider({children}){
     const [userData,setUserData]= useState(null)
     const [isLoggedin,setIsLoggedin]= useState(false)
     const [isLoading,setIsLoading]= useState (true)
+
  
 
 useEffect(()=>{
@@ -42,6 +43,8 @@ useEffect(()=>{
     const login=(userData)=>{
        console.log(userData,'from conext')
          setUserData(userData)
+              window.location.pathname='/'
+
     }
     if(!userData){
       console.log('no user data')

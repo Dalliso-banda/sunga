@@ -61,7 +61,7 @@ class AuthController {
   async me(req, res) {
   const auth_token= req.cookies['auth_token'];
   if(!auth_token){
-    return res.status(401).json( {message:'unauthenticated'})
+    return res.status(401).json( {message:'unauthenticated',status:'401'})
   }
 
   try{

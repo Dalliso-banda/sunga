@@ -208,8 +208,8 @@ export default function Login() {
               </Form>
               
               <Card.Footer className="text-center text-muted">
-                <a href="/forgot-password" style={{ textDecoration: 'none', color: styles.logoText.color }}>
-                    Forgot Password?
+                <a href="/login" style={{ textDecoration: 'none', color: styles.logoText.color }}>
+                have an account? login
                 </a>
               </Card.Footer>
 
